@@ -1,0 +1,1 @@
+<button type="submit" {{$attributes->merge(['class'=>'btn btn-primary mr-3'])}}>次へ</button>

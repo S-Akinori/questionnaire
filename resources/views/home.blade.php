@@ -1,0 +1,31 @@
+<x-app-layout>
+    <div class="top-img-container m-auto">
+        <img src="/storage/img/wb_amazon.jpg" alt="アマゾンギフト画像" class="">
+    </div>
+
+    <div class="mt-3">
+        <h2 class="title">アンケートのご協力お願いします</h2>
+        <p>
+            アンケートをご回答いただきました方全員に謝礼として<strong>ギフト券1,000円分</strong>を進呈いたします。
+        </p>
+        <p>
+            回答確認後、順次ご連絡させていただきます。
+        </p>
+
+        <h2 class="title">【ご回答に当たって】</h2>
+        <ul>
+            <li>
+                アンケート対象者は、結婚式後で弊社の商品をご購入いただいた方に限ります。
+                ※アンケートは、新郎新婦さまのどちらか一人1回限りとさせていただきます。
+            </li>
+            <li>
+                アンケートの回答およびご提供いただいたお写真は、弊社ホームページの「お客様の声」ページにて掲載させていただきます。
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <a href="{{route('form.show', 'form1')}}" class="btn btn-secondary">同意する</a>
+    </div>
+
+</x-app-layout>

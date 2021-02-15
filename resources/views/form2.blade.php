@@ -1,0 +1,38 @@
+<x-app-layout>
+    <x-top value="15" />
+
+    <x-error>
+        入力にエラーがあります。
+    </x-error>
+
+    <form action="{{route('form.getData')}}" method="POST" id="form">
+        @csrf
+        <x-form-group>
+            <x-slot name="title">Q.6. ご購入いただいた商品をお知らせください。<br>【プロフィールムービー】 *</x-slot>
+
+            <x-input-error name="answer.profile_movie.0" />
+
+            <input type="hidden" name="answer[profile_movie][check]" value="true" >
+
+            @for ($i = 0; $i < count($profile_movie_value); $i++)
+            <x-checkbox 
+                name="answer[profile_movie][]" 
+                id="check{{$i}}" 
+                value="{!! json_encode($profile_movie_value[$i], JSON_UNESCAPED_UNICODE) !!}"
+                str="{!! $profile_movie_value[$i]['name'] !!}" 
+                imgpath="{{$profile_movie_value[$i]['img_path']}}"
+                key="profile_movie"
+            />
+            @endfor
+
+        </x-form-group>
+
+        <input type="hidden" name="next" value="form3">
+
+        <div class="flex justify-content-between mb-3">
+            <x-back-link-button view="form1" />
+            <x-button />
+        </div>
+
+    </form>
+</x-app-layout>
