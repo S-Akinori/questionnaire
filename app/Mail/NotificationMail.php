@@ -28,7 +28,7 @@ class NotificationMail extends Mailable
      */
     public function build()
     {
-        return $this->from('from@example.com')
+        return $this->from(env('MAIL_FROM_ADDRESS'))
                     ->subject('アンケート回答通知')
                     ->view('emails.notification');
     }
