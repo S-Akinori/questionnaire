@@ -112,6 +112,12 @@ class FormController extends Controller
             'answer.*.textarea.min'=>':min文字以上でお願いします'
         ]);
 
+        if(array_key_exists('email', $request->answer)) {
+            if(Form::where('email', $request->answer['email'][0])->count() > 0) {
+                return back()->withInput()->withErrors(['answer.email.0'=>'すでに使われているメールアドレスです']);
+            }
+        }
+
         $keys = array_keys($request->answer);
 
         for($i = 0; $i < count($keys) ; $i++) {
@@ -201,7 +207,7 @@ class FormController extends Controller
         ];
 
         Mail::to($user['email'])->send(new ThankyouMail($user));
-        Mail::to('to@exmaple.com')->send(new NotificationMail());
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail());
         return view('thankyou');
     }
 

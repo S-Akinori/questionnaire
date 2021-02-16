@@ -53,9 +53,11 @@
             <x-slot name="title">Q.5. メールアドレスを入力してください。 *</x-slot>
             <p>入力に誤りがある場合は、Amazonギフト券番号のお知らせができませんのでご注意ください。</p>
             <x-input type="email" name="answer[email][]" class="my-2" value="" />
+            <x-input-error name="answer.email.0" />
+        </x-form-group>
+        <x-form-group>
             <p>確認のため、もう一度入力してください</p>
             <x-input type="email" name="answer[email][]" />
-            <x-input-error name="answer.email.0" />
         </x-form-group>
 
         <input type="hidden" name="next" value="form2">
