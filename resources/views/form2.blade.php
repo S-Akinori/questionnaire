@@ -18,6 +18,7 @@
             @for ($i = 0; $i < count($profile_movie_value); $i++)
                 <div class="col-6">
                     <x-checkbox 
+                        type="checkbox"
                         name="answer[profile_movie][]" 
                         id="check{{$i}}" 
                         value="{!! json_encode($profile_movie_value[$i], JSON_UNESCAPED_UNICODE) !!}"
