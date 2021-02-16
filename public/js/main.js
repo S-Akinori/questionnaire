@@ -17,17 +17,21 @@ $(function() {
     $('#deleteFileButton1').on('click', function() {
        removeImg('preview1');
        $('#file1').val('');
+       $(this).addClass('hidden');
     })
     $('#deleteFileButton2').on('click', function() {
        removeImg('preview2'); 
        $('#file2').val('');
+       $(this).addClass('hidden');
     })
 
     $('#file1').on('change', function(e) {
         previewImage('preview1', e)
+        $('#deleteFileButton1').removeClass('hidden');
     })
     $('#file2').on('change', function(e) {
         previewImage('preview2', e)
+        $('#deleteFileButton2').removeClass('hidden');
     })
     
     $('#otherInput').on('focusout', function() {

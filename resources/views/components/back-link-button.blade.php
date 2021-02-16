@@ -1,1 +1,1 @@
-<a href="{{route('form.show', $view)}}" {{$attributes->merge(['class'=>'btn btn-primary mr-3'])}}>戻る</a>
+<a href="{{route('form.show', $view)}}" {{$attributes->merge(['class'=>'btn btn-secondary mr-3'])}}>戻る</a>

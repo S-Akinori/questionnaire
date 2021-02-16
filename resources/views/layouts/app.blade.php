@@ -16,7 +16,9 @@
     </head>
     <body class="antialiased">
         
-        {{ $slot }}
+        <main class="my-3 container">
+            {{ $slot }}
+        </main>
 
         <footer>
             WEBアンケート【Lcmアトリエ】

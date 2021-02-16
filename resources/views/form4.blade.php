@@ -14,25 +14,26 @@
 
             <x-input-error name="answer.ending_movie.0" />
 
+            <div class="row">
             @for ($i = 0; $i < count($ending_movie_value); $i++)
-            <x-checkbox 
-                name="answer[ending_movie][]" 
-                id="check{{$i}}" 
-                value="{!! json_encode($ending_movie_value[$i], JSON_UNESCAPED_UNICODE) !!}"
-                str="{!! $ending_movie_value[$i]['name'] !!}" 
-                imgpath="{{$ending_movie_value[$i]['img_path']}}"
-                key="ending_movie"
-            />
+            <div class="col-6">
+                <x-checkbox 
+                    name="answer[ending_movie][]" 
+                    id="check{{$i}}" 
+                    value="{!! json_encode($ending_movie_value[$i], JSON_UNESCAPED_UNICODE) !!}"
+                    str="{!! $ending_movie_value[$i]['name'] !!}" 
+                    imgpath="{{$ending_movie_value[$i]['img_path']}}"
+                    key="ending_movie"
+                />
+            </div>
             @endfor
+            </div>
 
         </x-form-group>
 
         <input type="hidden" name="next" value="form5">
 
-        <div class="flex justify-content-between mb-3">
-            <x-back-link-button view="form3" />
-            <x-button />
-        </div>
+        <x-prev-next-buttons prev='form3' />
 
     </form>
 </x-app-layout>

@@ -18,9 +18,7 @@
 
         <input type="hidden" name="next" value="form11">
 
-        <div class="flex justify-content-between mb-3">
-            <x-back-link-button view="form9" />
-            <x-button />
-        </div>
+        <x-prev-next-buttons prev='form9' />
+
     </form>
 </x-app-layout>

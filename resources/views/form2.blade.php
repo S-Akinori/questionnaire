@@ -14,25 +14,26 @@
 
             <input type="hidden" name="answer[profile_movie][check]" value="true" >
 
+            <div class="row">
             @for ($i = 0; $i < count($profile_movie_value); $i++)
-            <x-checkbox 
-                name="answer[profile_movie][]" 
-                id="check{{$i}}" 
-                value="{!! json_encode($profile_movie_value[$i], JSON_UNESCAPED_UNICODE) !!}"
-                str="{!! $profile_movie_value[$i]['name'] !!}" 
-                imgpath="{{$profile_movie_value[$i]['img_path']}}"
-                key="profile_movie"
-            />
+                <div class="col-6">
+                    <x-checkbox 
+                        name="answer[profile_movie][]" 
+                        id="check{{$i}}" 
+                        value="{!! json_encode($profile_movie_value[$i], JSON_UNESCAPED_UNICODE) !!}"
+                        str="{!! $profile_movie_value[$i]['name'] !!}" 
+                        imgpath="{{$profile_movie_value[$i]['img_path']}}"
+                        key="profile_movie"
+                    />
+                </div>
             @endfor
+            </div>
 
         </x-form-group>
 
         <input type="hidden" name="next" value="form3">
 
-        <div class="flex justify-content-between mb-3">
-            <x-back-link-button view="form1" />
-            <x-button />
-        </div>
+        <x-prev-next-buttons prev='form1' />
 
     </form>
 </x-app-layout>

@@ -16,17 +16,17 @@
         <x-form-group>
             <x-slot name="title">Q.2. 挙式日をお知らせください。 *</x-slot>
             <div class="d-flex">
-                <div class="d-flex">
+                <div class="d-flex mx-2 align-items-end">
                     <select name="ans_year" id="year" class="form-select">
                     </select>
                     <p class="m-0">年</p>
                 </div>
-                <div class="d-flex">
+                <div class="d-flex mx-2 align-items-end">
                     <select name="ans_month" id="month" class="form-select">
                     </select>
                     月
                 </div>
-                <div class="d-flex">
+                <div class="d-flex mx-2 align-items-end">
                     <select name="ans_date" id="date" class="form-select">
                     </select>
                     日
@@ -61,7 +61,7 @@
         <input type="hidden" name="next" value="form2">
 
         <div class="flex justify-content-end">
-            <button type="submit" class="btn btn-primary mr-3">次へ</button>
+            <button type="submit" class="btn btn-next mr-3">次へ</button>
         </div>
 
     </form>

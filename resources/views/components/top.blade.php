@@ -4,6 +4,6 @@
     </div>
 
     <div class="progress m-3">
-        <div class="progress-bar bg-info" role="progressbar" style="width: {{$value}}%" aria-valuenow="{{$value}}" aria-valuemin="0" aria-valuemax="100">{{$value}}%</div>
+        <div class="progress-bar" role="progressbar" style="width: {{$value}}%" aria-valuenow="{{$value}}" aria-valuemin="0" aria-valuemax="100">{{$value}}%</div>
     </div>
 </div>

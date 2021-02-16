@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotificationMail;
+use App\Mail\ThankyouMail;
+use App\Models\Form;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 
 class FormController extends Controller
@@ -72,6 +76,8 @@ class FormController extends Controller
     }
 
     public function show($view) {
+        // dd(session()->all());
+        // return session('opening_movie.0.name');
         if($view == 'form2') {
             return view($view, ['profile_movie_value'=>$this->profile_movie_value]);
         }
@@ -80,6 +86,9 @@ class FormController extends Controller
         }
         else if($view == 'form4') {
             return view($view, ['ending_movie_value'=>$this->ending_movie_value]);
+        } else if($view == 'confirmation') {
+            session(['is_confirmation_page'=>true]);
+            return view($view);
         } else {
             return view($view);
         }
@@ -130,24 +139,73 @@ class FormController extends Controller
                 $file = $request->file("answer.$key.file");
                 $data = $this->storeFile($key, $file);
 
-            } else if(isset($request->answer[$key]['textarea'])) {
-                $data = $request->answer[$key]['textarea'];
+            } else if(is_array($request->answer[$key])) {
+                if(array_key_exists('textarea', $request->answer[$key])) {
+                    $data = $request->answer[$key]['textarea'];
+                }
 
-            } else { //その他
+            } else { //その他                    
                 $data = $request->answer[$key];
             }
 
             session(["$key"=>$data]);
         }
 
-        // $columns = Schema::getColumnListing('forms');
-        // for($i = 0 ; $i < count($columns) ; $i++) {
-        //     session(["$columns[$i]"=>'']);
-        // }
 
+        if(session('is_confirmation_page')) {
+            return redirect()->route('form.show', 'confirmation');
+        }
         return redirect()->route('form.show', $request->next);
     }
 
+    // sending mail
+    public function saveData() {
+        // フォームを飛ばしたりしてないかのチェック->ミスがあった場合は不正処理として419エラーを出す
+        $columns = Schema::getColumnListing('forms');
+        for($i = 0 ; $i < count($columns) ; $i++) {
+            if($columns[$i] == 'id'|| $columns[$i] == 'created_at' || $columns[$i] == 'updated_at') {
+                continue;
+            }
+
+            if(!array_key_exists($columns[$i], session()->all())) {
+                abort(419);
+            } else {
+                $data[$columns[$i]] = session($columns[$i]);
+            }
+        }
+
+        // dd($data);
+        // Form::create($data);
+
+        $form = new Form();
+
+        for($i = 0; $i < count($columns) ; $i++) {
+            if($columns[$i] == 'id'|| $columns[$i] == 'created_at' || $columns[$i] == 'updated_at') {
+                continue;
+            }
+
+            $key = $columns[$i];
+
+            if(is_array($data[$key])) {
+                $form->{"$key"} = json_encode($data[$key], JSON_UNESCAPED_UNICODE);
+            } else {
+                $form->{"$key"} = $data[$key];
+            }
+        }
+
+        $form->save();
+
+        $user = [
+            'name'=>session('name'),
+            'email'=>session('email'),
+        ];
+
+        Mail::to($user['email'])->send(new ThankyouMail($user));
+        Mail::to('to@exmaple.com')->send(new NotificationMail());
+        return view('thankyou');
+    }
+
+    // custom function
     public function checkbox($key, $array) {
         for($i = 0 ; $i < count($array) - 1 ; $i++) {
             $json = json_decode($array[$i], true);
@@ -164,6 +222,7 @@ class FormController extends Controller
     public function storeFile($key, $file) {
         $file_dir = 'public/img/uploaded';
         $file_path = $file->store($file_dir);
+        $file_path = str_replace('public', 'storage', $file_path);
         return $file_path;
     }
 }
