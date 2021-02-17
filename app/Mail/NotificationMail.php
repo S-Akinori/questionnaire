@@ -11,14 +11,17 @@ class NotificationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $data;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
         //
+        $this->data = $data;
     }
 
     /**
@@ -30,6 +33,7 @@ class NotificationMail extends Mailable
     {
         return $this->from(env('MAIL_FROM_ADDRESS'))
                     ->subject('アンケート回答通知')
-                    ->view('emails.notification');
+                    ->view('emails.notification')
+                    ->with(['data'=>$this->data]);
     }
 }
