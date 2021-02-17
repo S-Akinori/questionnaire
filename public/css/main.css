@@ -1,6 +1,13 @@
 body {
     font-family: 'Yu Gothic Medium', 'Century Gothic', sans-serif;
     font-size: 15px;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }
 
 .top-img-container {
@@ -55,8 +62,8 @@ footer {
 }
 
 .preview {
-    width: 300px;
-    height: 170px;
+    width: 60%;
+    height: 60%;
 }
 
 .preview img {
@@ -105,4 +112,23 @@ footer {
 
 .text-small {
     font-size: 12px;
+}
+
+@media screen and (min-width: 576px) {
+	.button-group {
+        width: 300px;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    .preview {
+        width: 30%;
+        height: 30%;
+    }
+
+    .label-container {
+        width: 320px;
+    }
 }

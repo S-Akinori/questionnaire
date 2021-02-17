@@ -5,6 +5,13 @@ $(function() {
     
     $('#form').on('submit', function() {
         $('#theDate').val($('#year').val() + ':' + $('#month').val() + ':' + $('#date').val());
+        if(!$('#preview1').hasClass('hidden')) {
+            $('#fileValid1').val('true');
+        }
+
+        if(!$('#preview2').hasClass('hidden')) {
+            $('#fileValid2').val('true');
+        }
     });
 
     // ファイル選択
@@ -14,6 +21,7 @@ $(function() {
     $('#selectFileButton2').on('click', function() {
         $('#file2').trigger('click');
     });
+
     $('#deleteFileButton1').on('click', function() {
        removeImg('preview1');
        $('#file1').val('');

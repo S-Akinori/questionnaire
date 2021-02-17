@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="top-img-container m-auto">
-        <img src="/storage/img/wb_amazon.jpg" alt="アマゾンギフト画像" class="">
+        <img src="storage/img/wb_amazon.jpg" alt="アマゾンギフト画像" class="">
     </div>
 
     <div class="my-5">

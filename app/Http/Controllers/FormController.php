@@ -96,12 +96,16 @@ class FormController extends Controller
 
     public function getData(Request $request) {
 
+        // dd($request->all());
+
         // validation
         $request->validate([
+            // 'answer'=>'required',
             'answer.*'=>'required|max:255',
             'answer.*.*'=>'required',
             'answer.email.0'=>'same:answer.email.1',
-            "answer.*.file"=>'mimes:jpg,png|max:4096',
+            "answer.*.file"=>'nullable|mimes:jpg,png|max:4096',
+            'file.validation.*'=>"required",
             'answer.*.textarea'=>'min:100',
             'answer.opinion.textarea'=>'min:0',
         ],[
@@ -109,13 +113,17 @@ class FormController extends Controller
             'answer.*.*.required' => '*のマークがある項目は必ず入力してください',
             'answer.email.0.same'=>'正しくメールアドレスを入力してください',
             "answer.*.file.mimes"=>'JPEGまたはPNG形式のファイルをアップロードしてください',
-            'answer.*.textarea.min'=>':min文字以上でお願いします'
+            'file.validation.*.required'=>'*のマークがある項目は必ず入力してください',
         ]);
 
-        if(array_key_exists('email', $request->answer)) {
+        if(isset($request->answer['email'])) {
             if(Form::where('email', $request->answer['email'][0])->count() > 0) {
                 return back()->withInput()->withErrors(['answer.email.0'=>'すでに使われているメールアドレスです']);
             }
+        }
+
+        if($request->answer == null && isset($request->file['validation'])) {
+            return redirect()->route('form.show', $request->next);
         }
 
         $keys = array_keys($request->answer);
@@ -236,7 +244,7 @@ class FormController extends Controller
     public function storeFile($key, $file) {
         $file_dir = 'public/img/uploaded';
         $file_path = $file->store($file_dir);
-        $file_path = url('/') . str_replace('public', 'storage', $file_path);
+        $file_path = url('/') . '/' . str_replace('public', 'storage', $file_path);
         return $file_path;
     }
 }
