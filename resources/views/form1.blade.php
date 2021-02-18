@@ -50,7 +50,7 @@
                         @endfor
                     @else
                         @for ($i = 0; $i < 12; $i++)
-                            @if ($i == 0)
+                            @if ($i + 1 == $date[1])
                             <option selected>{{$i + 1}}</option>
                             @else
                             <option>{{$i + 1}}</option>
@@ -71,7 +71,7 @@
                             @endif
                         @endfor
                     @else
-                        @for ($i = 0; $i < 31; $i++)
+                        @for ($i + 1 = $date[2]; $i < 31; $i++)
                             @if ($i == 0)
                             <option selected>{{$i + 1}}</option>
                             @else
