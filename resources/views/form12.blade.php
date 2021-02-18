@@ -13,7 +13,6 @@
 
             <x-textarea name="answer[opinion][textarea]">
                 <x-slot name="value">{{session('opinion') ?: old('answer.opinion.textarea')}}</x-slot>
-                <p>100文字以上でお願いします</p>
             </x-textarea>
         </x-form-group>
 
