@@ -8,11 +8,12 @@
     <form action="{{route('form.getData')}}" method="POST" id="form" enctype="multipart/form-data">
         @csrf
         <x-form-group>
-            <x-slot name="title">Q.17. 披露宴の写真をアップロードしてください(2枚)。 *</x-slot>
+            <x-slot name="title">Q.17. 披露宴の写真をアップロードしてください(2枚)。 <span class="text-danger">*</span></x-slot>
             <p>【1枚目】</p>
             <x-input-error name="file.validation.*" />
+            <x-input-error name="answer.photo_1.file" />
 
-            <input type="file" name="answer[photo_1][file]" id="file1" class="hidden" accept=".jpg, .png">
+            <input type="file" name="answer[photo_1][file]" id="file1" class="hidden">
             <input type="hidden" name="file[validation][]" id="fileValid1" value="">
 
             <div id="preview1" class="my-3 preview @if (!session('photo_1')) hidden @endif">
@@ -25,8 +26,9 @@
 
         <x-form-group>
             <p>【2枚目】</p>
+            <x-input-error name="answer.photo_2.file" />
 
-            <input type="file" name="answer[photo_2][file]" id="file2" class="hidden" accept=".jpg, .png">
+            <input type="file" name="answer[photo_2][file]" id="file2" class="hidden">
             <input type="hidden" name="file[validation][]" id="fileValid2" value="">
             @if (session('photo_2'))
             <div id="preview2" class="my-3 preview">

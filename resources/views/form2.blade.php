@@ -8,7 +8,7 @@
     <form action="{{route('form.getData')}}" method="POST" id="form">
         @csrf
         <x-form-group>
-            <x-slot name="title">Q.6. ご購入いただいた商品をお知らせください。<br>【プロフィールムービー】 *</x-slot>
+            <x-slot name="title">Q.6. ご購入いただいた商品をお知らせください。<br>【プロフィールムービー】<span class="text-danger">*</span></x-slot>
 
             <x-input-error name="answer.profile_movie.0" />
 

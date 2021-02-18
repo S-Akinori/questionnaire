@@ -12,23 +12,23 @@
     <div>
         <p>【1ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.1. ご注文時のお名前をお知らせください。 *</x-slot>
+            <x-slot name="title">Q.1. ご注文時のお名前をお知らせください。 <span class="text-danger">*</span></x-slot>
             <p>{{session('name')}}</p>
         </x-form-group>
         <x-form-group>
-            <x-slot name="title">Q.2. 挙式日をお知らせください。 *</x-slot>
+            <x-slot name="title">Q.2. 挙式日をお知らせください。 <span class="text-danger">*</span></x-slot>
             <p>{{session('date')}}</p>
         </x-form-group>
         <x-form-group>
-            <x-slot name="title">Q.3. 披露宴会場名をお知らせください。 *</x-slot>
+            <x-slot name="title">Q.3. 披露宴会場名をお知らせください。 <span class="text-danger">*</span></x-slot>
             <p>{{session('venue')}}</p>
         </x-form-group>
         <x-form-group>
-            <x-slot name="title">Q.4. 会場の都道府県をお知らせください。 *</x-slot>
+            <x-slot name="title">Q.4. 会場の都道府県をお知らせください。 <span class="text-danger">*</span></x-slot>
             <p>{{session('place')}}</p>
         </x-form-group>
         <x-form-group>
-            <x-slot name="title">Q.5. メールアドレスを入力してください。 *</x-slot>
+            <x-slot name="title">Q.5. メールアドレスを入力してください。 <span class="text-danger">*</span></x-slot>
             <p>{{session('email')}}</p>
             <a href="{{route('form.show', 'form1')}}" class="btn btn-secondary">戻る</a>
         </x-form-group>
@@ -38,7 +38,7 @@
         <p>【2ページ目】</p>
         <x-form-group>
             <x-slot name="title">Q.6. ご購入いただいた商品をお知らせください。<br>
-    【プロフィールムービー】 *</x-slot>
+    【プロフィールムービー】 <span class="text-danger">*</span></x-slot>
             @foreach (session('profile_movie') as $item => $value)
             <div class="my-3">
                 <p>{{$value['name']}}</p>
@@ -54,7 +54,7 @@
     <div>
         <p>【3ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.7. ご購入いただいた商品をお知らせください。<br>【オープニングムービー】 *</x-slot>
+            <x-slot name="title">Q.7. ご購入いただいた商品をお知らせください。<br>【オープニングムービー】 <span class="text-danger">*</span></x-slot>
             @foreach (session('opening_movie') as $item => $value)
             <div class="my-3">
                 <p>{{$value['name']}}</p>
@@ -70,7 +70,7 @@
     <div>
         <p>【4ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.8. ご購入いただいた商品をお知らせください。<br>【エンドロールムービー】 *</x-slot>
+            <x-slot name="title">Q.8. ご購入いただいた商品をお知らせください。<br>【エンドロールムービー】 <span class="text-danger">*</span></x-slot>
             @foreach (session('ending_movie') as $item => $value)
             <div class="my-3">
                 <p>{{$value['name']}}</p>
@@ -86,7 +86,7 @@
     <div>
         <p>【5ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.9. Lcmアトリエを知ったきっかけは *</x-slot>
+            <x-slot name="title">Q.9. Lcmアトリエを知ったきっかけは <span class="text-danger">*</span></x-slot>
             @foreach (session('way_to_get_info') as $item => $value)
             @if (is_array($value))
                 @foreach ($value as $item1 => $value1)
@@ -103,7 +103,7 @@
     <div>
         <p>【6ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.10. ホームページのわかりやすさは *</x-slot>
+            <x-slot name="title">Q.10. ホームページのわかりやすさは <span class="text-danger">*</span></x-slot>
             <p>{{session('about_homepage')}}</p>
             <a href="{{route('form.show', 'form6')}}" class="btn btn-secondary">戻る</a>
         </x-form-group>
@@ -112,7 +112,7 @@
     <div>
         <p>【7ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.11. コメントシート作成や写真の送付方法は *</x-slot>
+            <x-slot name="title">Q.11. コメントシート作成や写真の送付方法は <span class="text-danger">*</span></x-slot>
             <p>{{session('about_sending')}}</p>
             <a href="{{route('form.show', 'form7')}}" class="btn btn-secondary">戻る</a>
         </x-form-group>
@@ -121,7 +121,7 @@
     <div>
         <p>【8ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.12. 担当者の対応は *</x-slot>
+            <x-slot name="title">Q.12. 担当者の対応は <span class="text-danger">*</span></x-slot>
             <p>{{session('about_staff')}}</p>
             <a href="{{route('form.show', 'form8')}}" class="btn btn-secondary">戻る</a>
         </x-form-group>
@@ -130,7 +130,7 @@
     <div>
         <p>【9ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.13. 総合的な満足度は *</x-slot>
+            <x-slot name="title">Q.13. 総合的な満足度は <span class="text-danger">*</span></x-slot>
             <p>{{session('about_all')}}</p>
             <a href="{{route('form.show', 'form9')}}" class="btn btn-secondary">戻る</a>
         </x-form-group>
@@ -139,7 +139,7 @@
     <div>
         <p>【10ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.14. 当店を利用された感想をお聞かせください。 *</x-slot>
+            <x-slot name="title">Q.14. 当店を利用された感想をお聞かせください。 <span class="text-danger">*</span></x-slot>
             <p>{{session('thoughts_service')}}</p>
             <a href="{{route('form.show', 'form10')}}" class="btn btn-secondary">戻る</a>
         </x-form-group>
@@ -148,7 +148,7 @@
     <div>
         <p>【11ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.15. 制作されたムービーを上映した後、周りの反応は如何でしたか? *</x-slot>
+            <x-slot name="title">Q.15. 制作されたムービーを上映した後、周りの反応は如何でしたか? <span class="text-danger">*</span></x-slot>
             <p>{{session('thoughts_movie')}}</p>
             <a href="{{route('form.show', 'form11')}}" class="btn btn-secondary">戻る</a>
         </x-form-group>
@@ -166,7 +166,7 @@
     <div>
         <p>【13ページ目】</p>
         <x-form-group>
-            <x-slot name="title">Q.17. 披露宴の写真をアップロードしてください。*</x-slot>
+            <x-slot name="title">Q.17. 披露宴の写真をアップロードしてください。<span class="text-danger">*</span></x-slot>
             <p>【1枚目】</p>
             <div class="preview my-3">
                 <img src="{{session('photo_1')}}" alt="photo1">

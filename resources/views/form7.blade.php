@@ -8,7 +8,7 @@
     <form action="{{route('form.getData')}}" method="POST" id="form">
         @csrf
         <x-form-group>
-            <x-slot name="title">Q.11. コメントシート作成や写真の送付方法は *</x-slot>
+            <x-slot name="title">Q.11. コメントシート作成や写真の送付方法は <span class="text-danger">*</span></x-slot>
             <x-input-error name="answer" />
 
             <x-checkbox type="radio" name="answer[about_sending]" value="わかりやすい" id="check0" str="わかりやすい" imgpath="" checked="{{true}}" />

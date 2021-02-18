@@ -31,7 +31,7 @@ class CreateFormsTable extends Migration
             $table->string('about_all');
             $table->text('thoughts_service');
             $table->text('thoughts_movie');
-            $table->text('opinion');
+            $table->text('opinion')->nullable();
             $table->text('photo_1');
             $table->text('photo_2');
         });

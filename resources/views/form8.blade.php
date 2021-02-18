@@ -8,7 +8,7 @@
     <form action="{{route('form.getData')}}" method="POST" id="form">
         @csrf
         <x-form-group>
-            <x-slot name="title">Q.12. 担当者の対応は *</x-slot>
+            <x-slot name="title">Q.12. 担当者の対応は <span class="text-danger">*</span></x-slot>
             <x-input-error name="answer" />
 
             <x-checkbox type="radio" name="answer[about_staff]" value="満足している" id="check0" str="満足している" imgpath="" checked="{{true}}" />

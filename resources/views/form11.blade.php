@@ -8,7 +8,7 @@
     <form action="{{route('form.getData')}}" method="POST" id="form">
         @csrf
         <x-form-group>
-            <x-slot name="title">Q.15. 制作されたムービーを上映した後、周りの反応は如何でしたか? *</x-slot>
+            <x-slot name="title">Q.15. 制作されたムービーを上映した後、周りの反応は如何でしたか? <span class="text-danger">*</span></x-slot>
             <x-input-error name="answer.thoughts_movie.textarea" />
 
             <x-textarea name="answer[thoughts_movie][textarea]">

@@ -6,6 +6,7 @@ $(function() {
     $('#form').on('submit', function() {
         // not allowed to double click
         $('[type="submit"]').prop('disabled', true);
+        $('.btn-prev').prop('disabled', true);
 
         $('#theDate').val($('#year').val() + '-' + $('#month').val() + '-' + $('#date').val());
 

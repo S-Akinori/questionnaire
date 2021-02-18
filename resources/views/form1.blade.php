@@ -9,12 +9,12 @@
     <form action="{{route('form.getData')}}" method="POST" id="form">
         @csrf
         <x-form-group>
-            <x-slot name="title">Q.1 ご注文時のお名前をお知らせください。 *</x-slot>
+            <x-slot name="title">Q.1 ご注文時のお名前をお知らせください。 <span class="text-danger">*</span></x-slot>
             <x-input type="text" name="answer[name]" value="{{ session('name') ? session('name') : old('answer.name')}}"/>
             <x-input-error name="answer.name" />
         </x-form-group>
         <x-form-group>
-            <x-slot name="title">Q.2. 挙式日をお知らせください。 *</x-slot>
+            <x-slot name="title">Q.2. 挙式日をお知らせください。<span class="text-danger">*</span></x-slot>
             <div class="d-flex">
                 <div class="d-flex mx-2 align-items-end">
                     <select name="year" id="year" class="form-select">
@@ -88,13 +88,13 @@
         </x-form-group>
 
         <x-form-group>
-            <x-slot name="title">Q.3. 披露宴会場名をお知らせください。*</x-slot>
+            <x-slot name="title">Q.3. 披露宴会場名をお知らせください。 <span class="text-danger">*</span></x-slot>
             <x-input type="text" name="answer[venue]" value="{{ session('venue') ? session('venue') : old('answer.venue')}}"/>
             <x-input-error name="answer.venue" />
         </x-form-group>
 
         <x-form-group>
-            <x-slot name="title">Q.4. 会場の都道府県をお知らせください。 *</x-slot>
+            <x-slot name="title">Q.4. 会場の都道府県をお知らせください。<span class="text-danger">*</span></x-slot>
             <select name="answer[place]" id="placeSelect" class="form-select">
                 @for ($i = 0; $i < count($places); $i++)
                     @if (session('place') || old('answer.place'))
@@ -116,7 +116,7 @@
         </x-form-group>
 
         <x-form-group>
-            <x-slot name="title">Q.5. メールアドレスを入力してください。 *</x-slot>
+            <x-slot name="title">Q.5. メールアドレスを入力してください。<span class="text-danger">*</span></x-slot>
             <p>入力に誤りがある場合は、Amazonギフト券番号のお知らせができませんのでご注意ください。</p>
             <x-input type="email" name="answer[email][]" class="my-2" value="" />
             <x-input-error name="answer.email.0" />

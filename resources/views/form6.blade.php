@@ -8,7 +8,7 @@
     <form action="{{route('form.getData')}}" method="POST" id="form">
         @csrf
         <x-form-group>
-            <x-slot name="title">Q.10. ホームページのわかりやすさは *</x-slot>
+            <x-slot name="title">Q.10. ホームページのわかりやすさは <span class="text-danger">*</span></x-slot>
             <x-input-error name="answer" />
 
             <x-checkbox type="radio" name="answer[about_homepage]" value="わかりやすい" id="check0" str="わかりやすい" imgpath="" checked="{{true}}" />

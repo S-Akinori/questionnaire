@@ -8,7 +8,7 @@
     <form action="{{route('form.getData')}}" method="POST" id="form">
         @csrf
         <x-form-group>
-            <x-slot name="title">Q.9. Lcmアトリエを知ったきっかけは *</x-slot>
+            <x-slot name="title">Q.9. Lcmアトリエを知ったきっかけは <span class="text-danger">*</span></x-slot>
             <input type="hidden" name="answer[way_to_get_info][check]" value="true" >
             <x-input-error name="answer.way_to_get_info.0" />
 
