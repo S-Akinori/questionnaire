@@ -155,7 +155,7 @@ class FormController extends Controller
             'answer.*.*.required' => '*のマークがある項目は必ず入力してください',
             'answer.email.0.same'=>'正しくメールアドレスを入力してください',
             "answer.*.file.mimes"=>'JPEGまたはPNG形式のファイルをアップロードしてください',
-            'answer.*.file.maz'=>"画像サイズが大きすぎます",
+            'answer.*.file.max'=>"画像サイズが大きすぎます",
             'answer.*.textarea.min'=>':min文字以上でお願いします',
             'file.validation.*.required'=>'*のマークがある項目は必ず入力してください',
         ]);
