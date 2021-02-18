@@ -146,7 +146,7 @@ class FormController extends Controller
             'answer.*'=>'required|max:255',
             'answer.*.*'=>'required',
             'answer.email.0'=>'same:answer.email.1',
-            "answer.*.file"=>'nullable|mimes:jpg,png|max:4096',
+            "answer.*.file"=>'nullable|mimes:jpg,png|max:9000',
             'file.validation.*'=>"required",
             'answer.*.textarea'=>'min:100',
             'answer.opinion.textarea'=>'min:0',
@@ -155,6 +155,7 @@ class FormController extends Controller
             'answer.*.*.required' => '*のマークがある項目は必ず入力してください',
             'answer.email.0.same'=>'正しくメールアドレスを入力してください',
             "answer.*.file.mimes"=>'JPEGまたはPNG形式のファイルをアップロードしてください',
+            'answer.*.file.maz'=>"画像サイズが大きすぎます",
             'answer.*.textarea.min'=>':min文字以上でお願いします',
             'file.validation.*.required'=>'*のマークがある項目は必ず入力してください',
         ]);
