@@ -17,22 +17,67 @@
             <x-slot name="title">Q.2. 挙式日をお知らせください。 *</x-slot>
             <div class="d-flex">
                 <div class="d-flex mx-2 align-items-end">
-                    <select name="ans_year" id="year" class="form-select">
+                    <select name="year" id="year" class="form-select">
+                        @for ($i = 0; $i < 3; $i++)
+                            @if ($old_date[0] > 0 || old('year'))
+                                @if ($date[0] - $i == $old_date[0] || $date[0] - $i == old('year'))
+                                <option selected>{{$date[0] - $i}}</option>
+                                @else
+                                <option>{{$date[0] - $i}}</option>
+                                @endif
+                            @else
+                                @if ($i == 0)
+                                <option selected>{{$date[0] - $i}}</option>
+                                @else
+                                <option>{{$date[0] - $i}}</option>
+                                @endif
+                            @endif
+                        @endfor
                     </select>
                     <p class="m-0">年</p>
                 </div>
                 <div class="d-flex mx-2 align-items-end">
-                    <select name="ans_month" id="month" class="form-select">
+                    <select name="month" id="month" class="form-select">
+                    @for ($i = 0; $i < 12; $i++)
+                        @if ($old_date[1] > 0 || old('month'))
+                            @if ($i + 1 == $old_date[1] || $i + 1 == old('month'))
+                            <option selected>{{$i + 1}}</option>
+                            @else
+                            <option>{{$i + 1}}</option>
+                            @endif
+                        @else                        
+                            @if ($i + 1 == $date[1])
+                            <option selected>{{$i + 1}}</option>
+                            @else
+                            <option>{{$i + 1}}</option>
+                            @endif
+                        @endif
+                    @endfor
                     </select>
                     月
                 </div>
                 <div class="d-flex mx-2 align-items-end">
-                    <select name="ans_date" id="date" class="form-select">
+                    <select name="date" id="date" class="form-select">
+                    @for ($i = 0; $i < 31; $i++)
+                        @if ($old_date[2] > 0 || old('date'))
+                            @if ($i + 1 == $old_date[2] || $i + 1 == old('date'))
+                            <option selected>{{$i + 1}}</option>
+                            @else
+                            <option>{{$i + 1}}</option>
+                            @endif
+                        @else                        
+                            @if ($i + 1 == $date[2])
+                            <option selected>{{$i + 1}}</option>
+                            @else
+                            <option>{{$i + 1}}</option>
+                            @endif
+                        @endif
+                    @endfor
                     </select>
                     日
                 </div>
             </div>
-            <x-input type="hidden" name="answer[date]" id="theDate"></x-input>
+            <x-input type="hidden" name="answer[date]" id="theDate" ></x-input>
             <x-input-error name="answer.date" />
         </x-form-group>
 
@@ -44,7 +89,22 @@
 
         <x-form-group>
             <x-slot name="title">Q.4. 会場の都道府県をお知らせください。 *</x-slot>
-            <select name="answer[place]" id="placeSelect" class="form-select" value="{{ session('place') ? session('place') : old('answer.place')}}">
+            <select name="answer[place]" id="placeSelect" class="form-select">
+                @for ($i = 0; $i < count($places); $i++)
+                    @if (session('place') || old('answer.place'))
+                        @if ($places[$i] == session('place') || $places[$i] == old('answer.place'))
+                        <option selected>{{$places[$i]}}</option>
+                        @else
+                        <option>{{$places[$i]}}</option>
+                        @endif
+                    @else                        
+                        @if ($i == 0)
+                        <option selected>{{$places[$i]}}</option>
+                        @else
+                        <option>{{$places[$i]}}</option>
+                        @endif
+                    @endif
+                @endfor
             </select>
             <x-input-error name="answer.place" />
         </x-form-group>

@@ -1,10 +1,13 @@
 $(function() {
-    var now = new Date()
-    createDateOptions(now);
-    createPlaceOptions();
+    // var now = new Date()
+    // createDateOptions(now);
+    // createPlaceOptions();
     
     $('#form').on('submit', function() {
-        $('#theDate').val($('#year').val() + ':' + $('#month').val() + ':' + $('#date').val());
+        // not allowed to double click
+        $('[type="submit"]').prop('disabled', true);
+
+        $('#theDate').val($('#year').val() + '-' + $('#month').val() + '-' + $('#date').val());
 
         var info = {'その他': $('#otherInput').val()};
         info = JSON.stringify(info);
@@ -49,6 +52,7 @@ $(function() {
 
 });
 
+/*
 function createDateOptions(now) {
     var $yearSelect = $('#year');
     var $monthSelect = $('#month');
@@ -99,6 +103,7 @@ function createPlaceOptions() {
     }
 
 }
+*/
 
 function previewImage(id, e) {
     //ファイルオブジェクトを取得する
