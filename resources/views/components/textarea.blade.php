@@ -1,4 +1,4 @@
 <div>
-    <textarea {{$attributes->merge(['class'=>'form-control', 'rows'=>'7'])}}></textarea>
+    <textarea {{$attributes->merge(['class'=>'form-control', 'rows'=>'7'])}}>{{$value}}</textarea>
     {{$slot}}
 </div>

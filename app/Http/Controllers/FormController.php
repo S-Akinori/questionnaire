@@ -77,18 +77,47 @@ class FormController extends Controller
 
     public function show($view) {
         // dd(session()->all());
-        // return session('opening_movie.0.name');
+
         if($view == 'form2') {
-            return view($view, ['profile_movie_value'=>$this->profile_movie_value]);
+            $old[] = '';
+            if(session('profile_movie')) {
+                $old = array_column(session('profile_movie'), 'name');
+            }
+            return view($view, ['profile_movie_value'=>$this->profile_movie_value, 'old'=>$old]);
+
         }
         else if($view == 'form3') {
-            return view($view, ['opening_movie_value'=>$this->opening_movie_value]);
+            $old[] = '';
+            if(session('opening_movie')) {
+                $old = array_column(session('opening_movie'), 'name');
+            }
+            return view($view, ['opening_movie_value'=>$this->opening_movie_value, 'old'=>$old]);
+
         }
         else if($view == 'form4') {
-            return view($view, ['ending_movie_value'=>$this->ending_movie_value]);
+            $old[] = '';
+            if(session('ending_movie')) {
+                $old = array_column(session('ending_movie'), 'name');
+            }
+            return view($view, ['ending_movie_value'=>$this->ending_movie_value, 'old'=>$old]);
+
+        } else if($view == 'form5') {
+            $old[] = '';
+            if(session('way_to_get_info')){
+                foreach(session('way_to_get_info') as $item) {
+                    if(is_array($item)) {
+                        $old['その他'] = $item['その他'];
+                    } else {
+                        $old[] = $item;
+                    }
+                }
+            }
+            // dd($old);
+            return view($view, ['ending_movie_value'=>$this->ending_movie_value, 'old'=>$old]);
         } else if($view == 'confirmation') {
             session(['is_confirmation_page'=>true]);
             return view($view);
+
         } else {
             return view($view);
         }
@@ -100,7 +129,6 @@ class FormController extends Controller
 
         // validation
         $request->validate([
-            // 'answer'=>'required',
             'answer.*'=>'required|max:255',
             'answer.*.*'=>'required',
             'answer.email.0'=>'same:answer.email.1',

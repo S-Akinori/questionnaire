@@ -10,8 +10,9 @@
         <x-form-group>
             <x-slot name="title">Q.14. 当店を利用された感想をお聞かせください。 *</x-slot>
             <x-input-error name="answer.thoughts_service.textarea" />
-
+                
             <x-textarea name="answer[thoughts_service][textarea]">
+                <x-slot name="value">{{session('thoughts_service')}}</x-slot>
                 <p>100文字以上でお願いします</p>
             </x-textarea>
         </x-form-group>

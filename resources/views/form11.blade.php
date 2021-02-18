@@ -12,6 +12,7 @@
             <x-input-error name="answer.thoughts_movie.textarea" />
 
             <x-textarea name="answer[thoughts_movie][textarea]">
+                <x-slot name="value">{{session('thoughts_movie')}}</x-slot>
                 <p>100文字以上でお願いします</p>
             </x-textarea>
         </x-form-group>

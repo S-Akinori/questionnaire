@@ -20,11 +20,11 @@
                     <x-checkbox 
                         type="checkbox"
                         name="answer[profile_movie][]" 
-                        id="check{{$i}}" 
+                        id="heck{{$i}}"
                         value="{!! json_encode($profile_movie_value[$i], JSON_UNESCAPED_UNICODE) !!}"
                         str="{!! $profile_movie_value[$i]['name'] !!}" 
                         imgpath="{{$profile_movie_value[$i]['img_path']}}"
-                        key="profile_movie"
+                        checked="{{in_array($profile_movie_value[$i]['name'], $old)}}"
                     />
                 </div>
             @endfor

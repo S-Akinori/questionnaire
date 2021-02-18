@@ -5,6 +5,11 @@ $(function() {
     
     $('#form').on('submit', function() {
         $('#theDate').val($('#year').val() + ':' + $('#month').val() + ':' + $('#date').val());
+
+        var info = {'その他': $('#otherInput').val()};
+        info = JSON.stringify(info);
+        $('#other').val(info);
+
         if(!$('#preview1').hasClass('hidden')) {
             $('#fileValid1').val('true');
         }
@@ -41,11 +46,7 @@ $(function() {
         previewImage('preview2', e)
         $('#deleteFileButton2').removeClass('hidden');
     })
-    
-    $('#otherInput').on('focusout', function() {
-        var info = $(this).val();
-        $('#other').val(info);
-    })
+
 });
 
 function createDateOptions(now) {
@@ -56,10 +57,17 @@ function createDateOptions(now) {
     var year = now.getFullYear();
     var month = now.getMonth() + 1;
     var date = now.getDate();
+    var years = 3;
     var months = 12;
     var dates = 31;
 
-    $yearSelect.append(`<option>${year}</option>`)
+    for(var i=0 ; i < years ; i++) {
+        if(i+1 == year) {
+            $yearSelect.append(`<option selected>${year-i}</option>`)
+        } else {
+            $yearSelect.append(`<option>${year - i}</option>`)
+        }
+    }
 
     for(var i=0 ; i < months ; i++) {
         if(i+1 == month) {

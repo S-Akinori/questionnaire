@@ -88,7 +88,13 @@
         <x-form-group>
             <x-slot name="title">Q.9. Lcmアトリエを知ったきっかけは *</x-slot>
             @foreach (session('way_to_get_info') as $item => $value)
-            <p>{{$value}}</p>
+            @if (is_array($value))
+                @foreach ($value as $item1 => $value1)
+                    <p>{{$value1}}</p>
+                @endforeach
+            @else
+                <p>{{$value}}</p>
+            @endif
             @endforeach
             <a href="{{route('form.show', 'form5')}}" class="btn btn-secondary">戻る</a>
         </x-form-group>

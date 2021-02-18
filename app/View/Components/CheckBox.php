@@ -15,21 +15,23 @@ class CheckBox extends Component
     public $value;
     public $key;
     public $imgpath;
+    public $checked = null;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($type='checkbox', $name, $id, $str, $value, $key, $imgpath = null)
+    public function __construct($type='checkbox', $name, $id, $str, $value, $checked, $imgpath = null)
     {
         $this->type = $type;
         $this->name = $name;
         $this->id = $id;
         $this->str = $str;
         $this->value = $value;
-        $this->key = $key;
         $this->imgpath = $imgpath;
+        $this->checked = $checked;
+        
     }
 
     /**

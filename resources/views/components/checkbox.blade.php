@@ -7,12 +7,7 @@
             id="{{$id}}" 
             value="{{$value}}" 
             class="form-check-input me-3"
-            @if ($type == 'checkbox')
-                @if (session($key) !== null && in_array($str, array_column(session($key), 'name'))) checked @endif
-            @else
-                required
-                @if (session($key) !== null && session($key) == $str) checked @endif
-            @endif
+            {{$checked ? 'checked' : ''}}
         />
         <p>{{$str}}</p>
     </div>
@@ -33,12 +28,7 @@
         id="{{$id}}" 
         value="{{$value}}" 
         class="form-check-input mx-3" 
-        @if ($type == 'checkbox')
-            @if (session($key) !== null && in_array($str, array_column(session($key), 'name'))) checked @endif
-        @else
-            required
-            @if (session($key) !== null && session($key) == $str) checked @endif
-        @endif
+        {{$checked ? 'checked' : ''}}
     />
     <label class="form-check-label" for="{{$id}}">
         <p class="m-0">{{$str}}</p>

@@ -24,7 +24,7 @@
                     value="{!! json_encode($ending_movie_value[$i], JSON_UNESCAPED_UNICODE) !!}"
                     str="{!! $ending_movie_value[$i]['name'] !!}" 
                     imgpath="{{$ending_movie_value[$i]['img_path']}}"
-                    key="ending_movie"
+                    checked="{{in_array($ending_movie_value[$i]['name'], $old)}}"
                 />
             </div>
             @endfor

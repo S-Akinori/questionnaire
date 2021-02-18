@@ -9,13 +9,13 @@
         @csrf
         <x-form-group>
             <x-slot name="title">Q.11. コメントシート作成や写真の送付方法は *</x-slot>
-            <x-input-error name="answer.about_sending" />
+            <x-input-error name="answer" />
 
-            <x-checkbox type="radio" name="answer[about_sending]" value="わかりやすい" id="check0" str="わかりやすい" key="about_sending" imgpath="" />
-            <x-checkbox type="radio" name="answer[about_sending]" value="ややわかりやすい" id="check1" str="ややわかりやすい" key="about_sending" imgpath="" />
-            <x-checkbox type="radio" name="answer[about_sending]" value="どちらともいえない" id="check2" str="どちらともいえない" key="about_sending" imgpath="" />
-            <x-checkbox type="radio" name="answer[about_sending]" value="ややわかりにくい" id="check3" str="ややわかりにくい" key="about_sending" imgpath="" />
-            <x-checkbox type="radio" name="answer[about_sending]" value="わかりにくい" id="check4" str="わかりにくい" key="about_sending" imgpath="" />
+            <x-checkbox type="radio" name="answer[about_sending]" value="わかりやすい" id="check0" str="わかりやすい" imgpath="" checked="{{true}}" />
+            <x-checkbox type="radio" name="answer[about_sending]" value="ややわかりやすい" id="check1" str="ややわかりやすい" imgpath="" checked="{{(session('about_sending') == 'ややわかりやすい') }}" />
+            <x-checkbox type="radio" name="answer[about_sending]" value="どちらともいえない" id="check2" str="どちらともいえない" imgpath="" checked="{{(session('about_sending') == 'どちらともいえない') }}" />
+            <x-checkbox type="radio" name="answer[about_sending]" value="ややわかりにくい" id="check3" str="ややわかりにくい" imgpath="" checked="{{(session('about_sending') == 'ややわかりにくい') }}" />
+            <x-checkbox type="radio" name="answer[about_sending]" value="わかりにくい" id="check4" str="わかりにくい" imgpath="" checked="{{(session('about_sending') == 'わかりにくい') }}" />
         </x-form-group>
 
         <input type="hidden" name="next" value="form8">
