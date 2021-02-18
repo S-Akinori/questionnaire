@@ -18,61 +18,67 @@
             <div class="d-flex">
                 <div class="d-flex mx-2 align-items-end">
                     <select name="year" id="year" class="form-select">
-                        @for ($i = 0; $i < 3; $i++)
-                            @if ($old_date[0] > 0 || old('year'))
+                        @if ($old_date[0] > 0 || old('year'))
+                            @for ($i = 0; $i < 3; $i++)
                                 @if ($date[0] - $i == $old_date[0] || $date[0] - $i == old('year'))
                                 <option selected>{{$date[0] - $i}}</option>
                                 @else
                                 <option>{{$date[0] - $i}}</option>
                                 @endif
-                            @else
+                            @endfor
+                        @else
+                            @for ($i = 0; $i < 3; $i++)
                                 @if ($i == 0)
                                 <option selected>{{$date[0] - $i}}</option>
                                 @else
                                 <option>{{$date[0] - $i}}</option>
                                 @endif
-                            @endif
-                        @endfor
+                            @endfor
+                        @endif
                     </select>
                     <p class="m-0">年</p>
                 </div>
                 <div class="d-flex mx-2 align-items-end">
                     <select name="month" id="month" class="form-select">
-                    @for ($i = 0; $i < 12; $i++)
-                        @if ($old_date[1] > 0 || old('month'))
+                    @if ($old_date[1] > 0 || old('month'))
+                        @for ($i = 0; $i < 12; $i++)
                             @if ($i + 1 == $old_date[1] || $i + 1 == old('month'))
                             <option selected>{{$i + 1}}</option>
                             @else
                             <option>{{$i + 1}}</option>
                             @endif
-                        @else                        
-                            @if ($i + 1 == $date[1])
+                        @endfor
+                    @else
+                        @for ($i = 0; $i < 12; $i++)
+                            @if ($i == 0)
                             <option selected>{{$i + 1}}</option>
                             @else
                             <option>{{$i + 1}}</option>
                             @endif
-                        @endif
-                    @endfor
+                        @endfor
+                    @endif
                     </select>
                     月
                 </div>
                 <div class="d-flex mx-2 align-items-end">
                     <select name="date" id="date" class="form-select">
-                    @for ($i = 0; $i < 31; $i++)
-                        @if ($old_date[2] > 0 || old('date'))
+                    @if ($old_date[2] > 0 || old('date'))
+                        @for ($i = 0; $i < 31; $i++)
                             @if ($i + 1 == $old_date[2] || $i + 1 == old('date'))
                             <option selected>{{$i + 1}}</option>
                             @else
                             <option>{{$i + 1}}</option>
                             @endif
-                        @else                        
-                            @if ($i + 1 == $date[2])
+                        @endfor
+                    @else
+                        @for ($i = 0; $i < 31; $i++)
+                            @if ($i == 0)
                             <option selected>{{$i + 1}}</option>
                             @else
                             <option>{{$i + 1}}</option>
                             @endif
-                        @endif
-                    @endfor
+                        @endfor
+                    @endif
                     </select>
                     日
                 </div>
