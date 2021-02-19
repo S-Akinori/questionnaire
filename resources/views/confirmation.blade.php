@@ -183,7 +183,7 @@
 
 
     <div class="d-flex justify-content-end">
-        <form action="{{route('form.saveData')}}" method="POST">
+        <form action="{{route('form.saveData')}}" method="POST" id="form">
             @csrf
             <button type="submit" class="btn btn-primary">送信</button>
         </form>

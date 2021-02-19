@@ -80,7 +80,6 @@ class FormController extends Controller
     }
 
     public function show($view) {
-        // dd(session()->all());
 
         if($view == 'form1') {
             if(session('date')) {
@@ -232,6 +231,8 @@ class FormController extends Controller
             }
         }
 
+        // $data = json_encode($data, JSON_UNESCAPED_UNICODE);
+
         // dd($data);
         // Form::create($data);
 
@@ -243,13 +244,18 @@ class FormController extends Controller
             }
 
             $key = $columns[$i];
+            $form->{"$key"} = $data[$key];
 
-            if(is_array($data[$key])) {
-                $form->{"$key"} = json_encode($data[$key], JSON_UNESCAPED_UNICODE);
-            } else {
-                $form->{"$key"} = $data[$key];
-            }
+            // たぶんいらない
+
+            // if(is_array($data[$key])) {
+            //     $form->{"$key"} = json_encode($data[$key], JSON_UNESCAPED_UNICODE);
+            // } else {
+                
+            // }
         }
+
+        // dd($form);
 
         $form->save();
 
@@ -266,8 +272,8 @@ class FormController extends Controller
         ];
 
         Mail::to($user['email'])->send(new ThankyouMail($user));
-        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NotificationMail($savedData));
-        session()->flush();
+        Mail::to(config('mail.from.address'))->send(new NotificationMail($savedData));
+        // session()->flush();
         return view('thankyou');
     }
 

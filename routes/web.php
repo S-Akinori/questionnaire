@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\FormController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +24,5 @@ Route::get('/', function () {
 Route::get('/{view}', [FormController::class, 'show'])->name('form.show');
 Route::post('/post', [FormController::class, 'getData'])->name('form.getData');
 Route::post('/thankyou', [FormController::class, 'saveData'])->name('form.saveData');
+
+Route::get('/test/data', [DataController::class, 'index'])->name('data.index');
