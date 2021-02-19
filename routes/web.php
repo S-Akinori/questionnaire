@@ -25,4 +25,3 @@ Route::get('/{view}', [FormController::class, 'show'])->name('form.show');
 Route::post('/post', [FormController::class, 'getData'])->name('form.getData');
 Route::post('/thankyou', [FormController::class, 'saveData'])->name('form.saveData');
 
-Route::get('/test/data', [DataController::class, 'index'])->name('data.index');

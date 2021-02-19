@@ -31,7 +31,7 @@ class ThankyouMail extends Mailable
      */
     public function build()
     {
-        return $this->from(config('mail.from.address'))
+        return $this->from(config('mail.from.address'), config('app.name', 'LCMアンケート'))
                     ->subject('アンケートのご協力ありがとうございます。')
                     ->view('emails.thankyou')
                     ->with(['user'=>$this->user]);
