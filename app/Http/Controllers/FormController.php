@@ -15,7 +15,11 @@ class FormController extends Controller
         '北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県',
     ];
 
-    //values of checkboxes
+    // プロフィールムービー
+    // 商品を追加するには以下のように追加してください。（他のムービーについても同様）。
+    // ['name'=>商品名, 'img_path'=>storage/img/profile_movies/ファイル名], 
+    // 画像は"storage/img/profile_movies/"フォルダに保存してください。
+
     public $profile_movie_value = [
         ['name'=>'購入なし', 'img_path'=>'storage/img/no_movie.jpg'],
         ['name'=>'シンプル', 'img_path'=>'storage/img/profile_movies/simpleR1.7.jpg'],
@@ -30,16 +34,17 @@ class FormController extends Controller
         ['name'=>'Classicus', 'img_path'=>'storage/img/profile_movies/ClassicusTOP.jpg'],
         ['name'=>'film', 'img_path'=>'storage/img/profile_movies/film.jpg'],
         ['name'=>'Good for', 'img_path'=>'storage/img/profile_movies/good-forTop.jpg'],
-        ['name'=>'Garden', 'img_path'=>'storage/img/profile_movies/top.jpg'],
+        ['name'=>'Garden', 'img_path'=>'storage/img/profile_movies/Gadentop.jpg'],
         ['name'=>'Happy Balloon', 'img_path'=>'storage/img/profile_movies/top.jpg'],
         ['name'=>'little bird', 'img_path'=>'storage/img/profile_movies/little-birdPVNtop.jpg'],
         ['name'=>'luxury & POP', 'img_path'=>'storage/img/profile_movies/luxurypop.jpg'],
         ['name'=>'memory', 'img_path'=>'storage/img/profile_movies/memory4-1.jpg'],
         ['name'=>'special day', 'img_path'=>'storage/img/profile_movies/SPtop.jpg'],
         ['name'=>'Sunny Day', 'img_path'=>'storage/img/profile_movies/sunnyday3-1.jpg'],
-        ['name'=>'The cinema', 'img_path'=>'storage/img/profile_movies/The-cinemaPVTOP.jpg']
+        ['name'=>'The cinema', 'img_path'=>'storage/img/profile_movies/The-cinemaPVTOP.jpg'],
     ];
 
+    //オープニングムービー
     public $opening_movie_value = [
         ['name'=>"購入なし", 'img_path'=>"storage/img/no_movie.jpg"],
         ['name'=>"スタート!!!", 'img_path'=>"storage/img/opening_movies/3.jpg"],
@@ -61,6 +66,7 @@ class FormController extends Controller
         ['name'=>"&...Tree", 'img_path'=>"storage/img/opening_movies/…Treetop.jpg"],
     ];
 
+    //エンディングムービー
     public $ending_movie_value = [
         ['name'=>"購入なし", 'img_path'=>"storage/img/no_movie.jpg"],
         ['name'=>"クラシック", 'img_path'=>"storage/img/ending_movies/classic1.jpg"],

@@ -13,7 +13,7 @@
                 回答確認後、下記のメールアドレスより順次ご連絡させていただきます。
             </p>
             <p>
-                information@lcm-atelier.com
+                web_review@lcm-atelier.com
             </p>
         </div>
 

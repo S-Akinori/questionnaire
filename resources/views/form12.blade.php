@@ -13,6 +13,7 @@
 
             <x-textarea name="answer[opinion][textarea]">
                 <x-slot name="value">{{session('opinion') ?: old('answer.opinion.textarea')}}</x-slot>
+                <p>※どのようなことでも構いませんのでご記入いただけますと幸いです。</p>
             </x-textarea>
         </x-form-group>
 
