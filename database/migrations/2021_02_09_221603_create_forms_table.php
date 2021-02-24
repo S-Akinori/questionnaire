@@ -21,10 +21,10 @@ class CreateFormsTable extends Migration
             $table->string('venue');
             $table->string('place');
             $table->string('email');
-            $table->json('profile_movie');
-            $table->json('opening_movie');
-            $table->json('ending_movie');
-            $table->json('way_to_get_info');
+            $table->text('profile_movie');
+            $table->text('opening_movie');
+            $table->text('ending_movie');
+            $table->text('way_to_get_info');
             $table->string('about_homepage');
             $table->string('about_sending');
             $table->string('about_staff');

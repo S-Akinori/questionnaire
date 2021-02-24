@@ -225,45 +225,40 @@ class FormController extends Controller
     public function saveData() {
         // フォームを飛ばしたりしてないかのチェック->ミスがあった場合は不正処理として419エラーを出す
         $columns = Schema::getColumnListing('forms');
+        // dd(session()->all());
+
         for($i = 0 ; $i < count($columns) ; $i++) {
-            if($columns[$i] == 'id'|| $columns[$i] == 'created_at' || $columns[$i] == 'updated_at') {
+            $key = $columns[$i];
+            if($key == 'id'|| $key == 'created_at' || $key == 'updated_at') {
                 continue;
             }
 
-            if(!array_key_exists($columns[$i], session()->all())) {
+            if(!array_key_exists($key, session()->all())) {
                 abort(419);
             } else {
-                $data[$columns[$i]] = session($columns[$i]);
+                if($key == 'profile_movie' || $key == 'opening_movie' || $key == 'ending_movie' ) {
+                    $name = '';
+                    foreach (session($key) as $item => $value) {
+                        $name .= $value['name'] . ',';
+                    }
+                    $data[$key] = $name;
+                } else if($key == 'way_to_get_info') {
+                    $name = '';
+                    foreach(session($key) as $item => $value) {
+                        if(is_array($value)) {
+                            $name .= $value['その他'] . ',';
+                        } else {
+                            $name .= $value . ',';
+                        }
+                    }
+                    $data[$key] = $name;
+                } else {
+                    $data[$key] = session($key);
+                }
             }
         }
-
-        // $data = json_encode($data, JSON_UNESCAPED_UNICODE);
-
         // dd($data);
-        // Form::create($data);
-
-        $form = new Form();
-
-        for($i = 0; $i < count($columns) ; $i++) {
-            if($columns[$i] == 'id'|| $columns[$i] == 'created_at' || $columns[$i] == 'updated_at') {
-                continue;
-            }
-
-            $key = $columns[$i];
-            $form->{"$key"} = $data[$key];
-
-            // たぶんいらない
-
-            // if(is_array($data[$key])) {
-            //     $form->{"$key"} = json_encode($data[$key], JSON_UNESCAPED_UNICODE);
-            // } else {
-                
-            // }
-        }
-
-        // dd($form);
-
-        $form->save();
+        $form = Form::create($data);
 
         $user = [
             'name'=>session('name'),
