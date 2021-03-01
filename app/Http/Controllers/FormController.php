@@ -294,7 +294,7 @@ class FormController extends Controller
 
         Mail::to($user['email'])->send(new ThankyouMail($user));
         Mail::to(config('mail.from.address'))->send(new NotificationMail($savedData, $this->columns_jp));
-        // session()->flush();
+        session()->flush();
         return view('thankyou');
     }
 
