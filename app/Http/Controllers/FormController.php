@@ -81,6 +81,30 @@ class FormController extends Controller
         ['name'=>"The cinema", 'img_path'=>"storage/img/ending_movies/The-cinemaED.jpg"],
     ];
 
+    public $columns_jp = [
+        "id" => "id",
+        "created_at" => "回答日時",
+        "updated_at" => "更新日時",
+        "name" => "名前",
+        "date" => "挙式日",
+        "venue" => "披露宴会場",
+        "place" => "都道府県",
+        "email" => "メールアドレス",
+        "profile_movie" => "プロフィールムービー",
+        "opening_movie" => "オープニングムービー",
+        "ending_movie" => "エンディングムービー",
+        "way_to_get_info" => "情報の取得方法",
+        "about_homepage" => "ホームページについて",
+        "about_sending" => "コメントシート作成・写真送付",
+        "about_staff" => "スタッフの対応",
+        "about_all" => "総合",
+        "thoughts_service" => "サービスについて",
+        "thoughts_movie" => "ムービーについて",
+        "opinion" => "ご意見",
+        "photo_1" => "画像1",
+        "photo_2" => "画像2"
+    ];
+
     public function index() {
         return view('welcome');
     }
@@ -259,22 +283,18 @@ class FormController extends Controller
         }
         // dd($data);
         $form = Form::create($data);
+        // dd($form);
 
         $user = [
             'name'=>session('name'),
             'email'=>session('email'),
         ];
 
-        $savedData = [
-            'id'=>$form->id,
-            'name'=>$form->name,
-            'email'=>$form->email,
-            'created_at'=>$form->created_at,
-        ];
+        $savedData = $form->toArray();
 
         Mail::to($user['email'])->send(new ThankyouMail($user));
-        Mail::to(config('mail.from.address'))->send(new NotificationMail($savedData));
-        session()->flush();
+        Mail::to(config('mail.from.address'))->send(new NotificationMail($savedData, $this->columns_jp));
+        // session()->flush();
         return view('thankyou');
     }
 
