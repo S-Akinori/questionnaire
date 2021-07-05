@@ -21,7 +21,8 @@
                 <img src="data:image/{{session('photo_1')['ext']}};base64,{{session('photo_1')['content']}}" alt="photo1">
             </div>
             @else
-            
+            <div id="preview1" class="hidden my-3 preview"></div>
+            @endif
             <div id="selectFileButton1" class="btn btn-primary">ファイル選択</div>
             <div id="deleteFileButton1" class="btn btn-secondary {{ session('photo_1') ? '' : 'hidden'}}">ファイル削除</div>
         </x-form-group>
