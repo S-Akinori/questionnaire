@@ -169,13 +169,13 @@
             <x-slot name="title">Q.17. 披露宴の写真をアップロードしてください。<span class="text-danger">*</span></x-slot>
             <p>【1枚目】</p>
             <div class="preview my-3">
-                <img src="{{session('photo_1')}}" alt="photo1">
+                <img src="data:image/{{session('photo_1')['ext']}};base64,{{session('photo_1')['content']}}" alt="photo1">
             </div>
         </x-form-group>
         <x-form-group>
             <p>【2枚目】</p>
             <div class="preview my-3">
-                <img src="{{session('photo_2')}}" alt="photo2">
+                <img src="data:image/{{session('photo_2')['ext']}};base64,{{session('photo_2')['content']}}" alt="photo2">
             </div>
             <a href="{{route('form.show', 'form13')}}" class="btn btn-secondary">戻る</a>
         </x-form-group>

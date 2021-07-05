@@ -37,7 +37,7 @@ class NotificationMail extends Mailable
                     ->subject('アンケート回答通知')
                     ->view('emails.notification')
                     ->with(['data'=>$this->data, 'columns_jp'=>$this->columns_jp])
-                    ->attach(storage_path('app/public/img/uploaded/') . basename($this->data['photo_1']))
-                    ->attach(storage_path('app/public/img/uploaded/') . basename($this->data['photo_2']));
+                    ->attach($this->data['photo_1']['path'])
+                    ->attach($this->data['photo_2']['path']);
     }
 }

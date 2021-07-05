@@ -8,6 +8,7 @@ use App\Models\Form;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class FormController extends Controller
 {
@@ -159,6 +160,7 @@ class FormController extends Controller
             return view($view, ['ending_movie_value'=>$this->ending_movie_value, 'old'=>$old]);
         } else if($view == 'confirmation') {
             session(['is_confirmation_page'=>true]);
+            // dd(session()->all());
             return view($view);
 
         } else {
@@ -224,7 +226,14 @@ class FormController extends Controller
 
             } else if(isset($request->answer[$key]['file'])) { //photo(file)の場合
                 $file = $request->file("answer.$key.file");
-                $data = $this->storeFile($key, $file);
+                // $data = $this->storeTemporayFile($key, $file);
+                
+                
+                $content = base64_encode(file_get_contents($file));
+                $ext = $file->getClientOriginalExtension();
+                
+                $data = ['content' => $content, 'ext' => $ext];
+                // dd($data);
 
             } else if(is_array($request->answer[$key])) {
                 if(array_key_exists('textarea', $request->answer[$key])) {
@@ -276,13 +285,20 @@ class FormController extends Controller
                         }
                     }
                     $data[$key] = $name;
+                } else if($key == 'photo_1' || $key == 'photo_2') {
+                    $file_data = base64_decode(session($key)['content']);
+                    // $file_data = session($key)['content'];
+                    $filename = uniqid(). '.'.session($key)['ext'];
+                    Storage::disk('local')->put($filename, $file_data);
+                    $path = storage_path('app/'.$filename);
+                    $data[$key] = ['path' => $path, 'filename' => $filename];
                 } else {
                     $data[$key] = session($key);
                 }
             }
         }
         // dd($data);
-        $form = Form::create($data);
+        // $form = Form::create($data);
         // dd($form);
 
         $user = [
@@ -290,11 +306,13 @@ class FormController extends Controller
             'email'=>session('email'),
         ];
 
-        $savedData = $form->toArray();
+        // $savedData = $form->toArray();
 
         Mail::to($user['email'])->send(new ThankyouMail($user));
-        Mail::to(config('mail.from.address'))->send(new NotificationMail($savedData, $this->columns_jp));
-        session()->flush();
+        Mail::to(config('mail.from.address'))->send(new NotificationMail($data, $this->columns_jp));
+        // session()->flush();
+        Storage::disk('local')->delete($data['photo_1']['filename']);
+        Storage::disk('local')->delete($data['photo_2']['filename']);
         return view('thankyou');
     }
 
@@ -317,5 +335,9 @@ class FormController extends Controller
         $file_path = $file->store($file_dir);
         $file_path = url('/') . '/' . str_replace('public', 'storage', $file_path);
         return $file_path;
+    }
+
+    private function storeTemporayFile($key, $file) {
+        // return file_get_contents($file);
     }
 }

@@ -17,7 +17,7 @@
             <input type="hidden" name="file[validation][]" id="fileValid1" value="">
 
             <div id="preview1" class="my-3 preview @if (!session('photo_1')) hidden @endif">
-                <img src="{{session('photo_1')}}" alt="">
+                <img src="data:image/{{session('photo_1')['ext']}};base64,{{session('photo_1')['content']}}" alt="photo1">
             </div>
             
             <div id="selectFileButton1" class="btn btn-primary">ファイル選択</div>
@@ -32,7 +32,7 @@
             <input type="hidden" name="file[validation][]" id="fileValid2" value="">
             @if (session('photo_2'))
             <div id="preview2" class="my-3 preview">
-                <img src="{{session('photo_2')}}" alt="">
+                <img src="data:image/{{session('photo_2')['ext']}};base64,{{session('photo_2')['content']}}" alt="photo2">
             </div>
             @else
             <div id="preview2" class="hidden my-3 preview"></div>
