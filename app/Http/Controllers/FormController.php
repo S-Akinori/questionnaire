@@ -310,9 +310,9 @@ class FormController extends Controller
 
         Mail::to($user['email'])->send(new ThankyouMail($user));
         Mail::to(config('mail.from.address'))->send(new NotificationMail($data, $this->columns_jp));
-        // session()->flush();
         Storage::disk('local')->delete($data['photo_1']['filename']);
         Storage::disk('local')->delete($data['photo_2']['filename']);
+        session()->flush();
         return view('thankyou');
     }
 
