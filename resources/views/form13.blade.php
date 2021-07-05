@@ -16,9 +16,11 @@
             <input type="file" name="answer[photo_1][file]" id="file1" class="hidden">
             <input type="hidden" name="file[validation][]" id="fileValid1" value="">
 
-            <div id="preview1" class="my-3 preview @if (!session('photo_1')) hidden @endif">
+            @if (session('photo_1'))
+            <div id="preview1" class="my-3 preview">
                 <img src="data:image/{{session('photo_1')['ext']}};base64,{{session('photo_1')['content']}}" alt="photo1">
             </div>
+            @else
             
             <div id="selectFileButton1" class="btn btn-primary">ファイル選択</div>
             <div id="deleteFileButton1" class="btn btn-secondary {{ session('photo_1') ? '' : 'hidden'}}">ファイル削除</div>
