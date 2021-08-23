@@ -64,7 +64,7 @@ class FormController extends Controller
         ['name'=>"Our Wedding", 'img_path'=>"storage/img/opening_movies/ourwedding4.jpg"],
         ['name'=>"Sunny Day", 'img_path'=>"storage/img/opening_movies/sunnydayop.jpg"],
         ['name'=>"Water Color", 'img_path'=>"storage/img/opening_movies/water_color.jpg"],
-        ['name'=>"&...Tree", 'img_path'=>"storage/img/opening_movies/…Treetop.jpg"],
+        ['name'=>"&...Tree", 'img_path'=>"https://lcm-atelier.com/wp/wp-content/uploads/2021/06/love-storyTOP.jpg"],
     ];
 
     //エンディングムービー
