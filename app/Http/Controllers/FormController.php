@@ -20,7 +20,6 @@ class FormController extends Controller
     // 商品を追加するには以下のように追加してください。（他のムービーについても同様）。
     // ['name'=>商品名, 'img_path'=>storage/img/profile_movies/ファイル名], 
     // 画像は"storage/img/profile_movies/"フォルダに保存してください。
-
     public $profile_movie_value = [
         ['name'=>'購入なし', 'img_path'=>'storage/img/no_movie.jpg'],
         ['name'=>'シンプル', 'img_path'=>'storage/img/profile_movies/simpleR1.7.jpg'],
@@ -44,7 +43,6 @@ class FormController extends Controller
         ['name'=>'Sunny Day', 'img_path'=>'storage/img/profile_movies/sunnyday3-1.jpg'],
         ['name'=>'The cinema', 'img_path'=>'storage/img/profile_movies/The-cinemaPVTOP.jpg'],
     ];
-
     //オープニングムービー
     public $opening_movie_value = [
         ['name'=>"購入なし", 'img_path'=>"storage/img/no_movie.jpg"],
@@ -68,7 +66,6 @@ class FormController extends Controller
         ['name'=>"&...Tree", 'img_path'=>"storage/img/opening_movies/…Treetop.jpg"],
         ['name'=>"love story", 'img_path'=>"https://lcm-atelier.com/wp/wp-content/uploads/2021/06/love-storyTOP.jpg"],
     ];
-
     //エンディングムービー
     public $ending_movie_value = [
         ['name'=>"購入なし", 'img_path'=>"storage/img/no_movie.jpg"],
